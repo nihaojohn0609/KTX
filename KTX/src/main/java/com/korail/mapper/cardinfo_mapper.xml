@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.card">
+	
+	
+	<insert id="payment" parameterType="com.korail.vo.CardinfoVo" >
+		insert into KTX_CARDINFO
+			(cardcomp,cardnum,recognizenum,birthday)
+		values
+			(#{cardcomp},#{cardnum},#{recognizenum},#{birthday})
+	</insert>
+
+<!-- 	<update id="paymentUpdate" parameterType="com.korail.vo.CardinfoVo" >
+		update KTX_CARDINFO set
+			cardcomp=#{cardcomp},cardnum=#{cardnum},recognizenum=#{recognizenum},birthday=#{birthday}
+		where 
+	</update> -->
+</mapper>

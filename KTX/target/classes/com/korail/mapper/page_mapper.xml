@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.page">
+
+	<select id="noticecount" parameterType="map" resultType="int">
+		select count(*) from  ktx_notice 
+		    <if test = 'category == "title"'>
+				where ntitle like '%'||#{cvalue}||'%' 
+			</if>
+			<if test = 'category == "content"'>
+				where ncontent like '%'||#{cvalue}||'%' 
+			</if>
+			<if test = 'category == "title_content"'>
+				where ntitle like '%'||#{cvalue}||'%' or ncontent like '%'||#{cvalue}||'%'
+			</if>				
+	</select>
+
+
+	<select id="count" parameterType="map" resultType="int">
+		select count(*)	from 
+		<if test='sname == "member"'>
+			ktx_member
+			<if test= 'category =="custname"'>
+				where name = #{cvalue}
+			</if>
+			<if test= 'category == "id"'>
+				where id = #{cvalue}
+			</if>
+		</if> 
+		<if test='sname == "adminReserv"'>
+ 			ktx_order
+			<if test='category =="reservnumber"'>
+				where reservnum = #{cvalue}
+			</if>
+			<if test= 'category == "id"'>
+				where id = #{cvalue}
+			</if>
+ 		</if>
+	</select>
+	
+</mapper>

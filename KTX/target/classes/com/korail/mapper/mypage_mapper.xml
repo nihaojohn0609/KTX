@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.mypage">
+
+		<select id="count" parameterType="java.lang.String" resultType="int">
+			SELECT COUNT(*) FROM KTX_ORDER WHERE ID	=#{userId} AND TO_DATE(DepPlandTime, 'YYYYMMDD') >= TRUNC(CURRENT_DATE)
+		</select>
+		
+		<select id="mail" parameterType="java.lang.String" resultType="com.korail.vo.MemberVo">
+			SELECT * FROM KTX_MEMBER WHERE ID=#{userId}
+		</select>
+		
+		<update id="pass" parameterType="map" >
+			UPDATE KTX_MEMBER SET PASS=#{cPass} WHERE ID=#{memberId} AND PASS=#{nPass}
+		</update>
+		
+		<update id="pnumber" parameterType="HashMap">
+			UPDATE KTX_MEMBER SET PNUMBER=#{pnumber} WHERE ID=#{memberId}
+		</update>
+		
+		<delete id="with" parameterType="java.lang.String">
+			DELETE FROM KTX_MEMBER WHERE ID=#{id}
+		</delete>
+
+<!-- 	<update id="pass" parameterType="java.util.HashMap"> -->
+<!-- 		UPDATE KTX_MEMBER SET pass=#{cpass} WHERE pass=#{npass} ADN ID=#{id} -->
+<!-- 	</update> -->
+	
+<!-- 	<update id="pnumber" parameterType="java.lang.String"> -->
+<!-- 		UPDATE KTX_MEMBER SET PHONENUMBER=#{cpnumber} WHERE PHONENUMBER=#{npnumber}  -->
+<!-- 	</update> -->
+	
+<!-- 	<delete id="secession" parameterType="java.lang.String"> -->
+<!-- 		DELETE FROM KTX_MEMBER WHERE ID=#{id} -->
+<!-- 	</delete> -->
+	
+</mapper>
